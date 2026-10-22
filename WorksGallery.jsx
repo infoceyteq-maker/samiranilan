@@ -9,13 +9,14 @@ import {
   Code2,
   FileText,
   FolderOpen,
+  Globe,
   Megaphone,
   Palette,
   Play,
 } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
-import { BUSINESS_STAGE, DRIVE_LIBRARY_URL, WORK_MEDIA, WORK_TABS } from "@/lib/data";
+import { BUSINESS_STAGE, DRIVE_LIBRARY_URL, LIVE_WEBSITES, WORK_MEDIA, WORK_TABS } from "@/lib/data";
 
 const ICONS = { Code2, Palette, Briefcase, Megaphone };
 
@@ -132,6 +133,45 @@ function ImageCard({ item }) {
 }
 
 
+
+/* ---------------- Live websites & web apps (top of Software & Web tab) ---------------- */
+function LiveWebsitesBlock() {
+  return (
+    <div className="mb-12">
+      <div className="mb-5 flex flex-wrap items-center gap-3">
+        <h3 className="font-display text-2xl font-extrabold tracking-tight">Live Websites &amp; Web Apps</h3>
+        <span className="rounded-full bg-white px-3 py-1 text-xs font-black text-neutral-700 shadow-sm ring-1 ring-neutral-200">
+          {LIVE_WEBSITES.length} live
+        </span>
+        <span className="hidden h-px flex-1 bg-white/50 sm:block" aria-hidden="true" />
+      </div>
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {LIVE_WEBSITES.map((w) => (
+          <article key={w.title} className="premium-card flex flex-col overflow-hidden">
+            <div className="flex items-center gap-3 p-5 text-white" style={{ background: w.gradient }}>
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/15 font-display text-base font-extrabold ring-1 ring-white/40">
+                {w.badge}
+              </span>
+              <span className="text-[13px] font-black uppercase leading-tight tracking-[0.08em]">{w.tag}</span>
+              <Globe className="ml-auto h-4 w-4 opacity-70" aria-hidden="true" />
+            </div>
+            <div className="flex flex-1 flex-col p-6">
+              <h4 className="font-display text-lg font-extrabold leading-snug">{w.title}</h4>
+              <p className="mt-2 flex-1 text-[15px] leading-relaxed text-neutral-800">{w.desc}</p>
+              <div className="mt-5">
+                <a href={w.url} target="_blank" rel="noopener noreferrer" className="btn-red !px-6 !py-2.5 text-sm">
+                  Visit Website
+                  <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ---------------- Business Stage: E-Proposals block ---------------- */
 function BusinessStageBlock() {
   return (
@@ -206,6 +246,7 @@ export default function WorksGallery() {
     for (const tb of WORK_TABS)
       c[tb.id] = WORK_MEDIA.filter((m) => m.tab === tb.id && m.driveId).length;
     c["business-stage"] = BUSINESS_STAGE.samples.length;
+    c["software-web"] = (c["software-web"] || 0) + LIVE_WEBSITES.length;
     return c;
   }, []);
 
@@ -276,6 +317,7 @@ export default function WorksGallery() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
         >
+          {active === "software-web" && <LiveWebsitesBlock />}
           {active === "business-stage" && <BusinessStageBlock />}
           {groups.map((g) => {
             const isVideoGroup = g.items[0]?.kind === "video";
