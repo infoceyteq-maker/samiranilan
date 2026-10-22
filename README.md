@@ -33,6 +33,7 @@ public/images/      — hero photography
 npm install
 npm run dev                  # http://localhost:3000
 npm run build && npm start   # production build
+npm run check:i18n           # verify every UI string exists in all 6 languages
 ```
 
 Fonts are self-hosted through `@fontsource-variable/*`, so `npm run build`
