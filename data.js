@@ -339,6 +339,20 @@ export const WORK_MEDIA = [
 ];
 
 
+// --- Live websites & web apps built by S.Nilan (shown in Software & Web tab) ---
+export const LIVE_WEBSITES = [
+  { badge: "AK", tag: "Restaurant Website • Ella", title: "AK Ristoro Restaurant — Ella", desc: "Italian & Asian fusion restaurant website with online table reservation, in the heart of Ella.", url: "https://monumental-liger-e05c00.netlify.app/", gradient: "linear-gradient(120deg,#111111,#dc2626)" },
+  { badge: "HE", tag: "Eco Retreat Website", title: "Hillora Ella — A Quiet Stay in the Hills", desc: "Eco retreat website for a quiet-luxury mountain stay in Kithal Ella — brand identity, website and direct-booking experience.", url: "https://hilloraella.netlify.app/", gradient: "linear-gradient(120deg,#14532d,#65a30d)" },
+  { badge: "NG", tag: "Music Artist Website", title: "Noise Generation", desc: "Official artist website for the Progressive House & Melodic Techno DJ / Producer — music, brand and bookings.", url: "https://heronoicegenaration.vercel.app/", gradient: "linear-gradient(120deg,#000000,#065f46)" },
+  { badge: "O", tag: "E-Commerce Store", title: "Osho.lk — Online Shopping", desc: "A full e-commerce store for tattoo, nails, lashes & beauty products, with islandwide delivery in Sri Lanka.", url: "https://osholk.vercel.app/", gradient: "linear-gradient(120deg,#111111,#374151)" },
+  { badge: "G", tag: "Corporate Website", title: "Ceylon GIMMS — Corporate Ecosystem", desc: "Corporate group website bridging Geography, Information, Marketing, Management and Science.", url: "https://ceylongimmsgroup.vercel.app/", gradient: "linear-gradient(120deg,#374151,#059669)" },
+  { badge: "IM", tag: "Artist Website", title: "Isuru Meneripitiya", desc: "Official website of singer & music director Isuru Chaturanga Meneripitiya — music, videos and artist profile.", url: "https://isurumeneripitiya.vercel.app/", gradient: "linear-gradient(120deg,#1f2937,#65a30d)" },
+  { badge: "ES", tag: "Eco Hotel Website", title: "Eminence Shire — Sinharaja", desc: "Eco-friendly hospitality & organic wellness hotel website in Pitugala, near the Sinharaja rainforest region.", url: "https://infoceyteq-maker.github.io/ecotourism-/", gradient: "linear-gradient(120deg,#064e3b,#059669)" },
+  { badge: "EE", tag: "Boutique Hotel Website", title: "Eminence Shire Ella", desc: "Boutique mountain-view hotel website in Ella with instant, direct WhatsApp booking.", url: "https://ceylongimmspvtltd-sys.github.io/Eminennshotel/", gradient: "linear-gradient(120deg,#111111,#4b5563)" },
+  { badge: "MB", tag: "Mobile Web App", title: "Maga Bus — Transit Flow App", desc: "A mobile web app for bus transit operations — a master panel to manage the Maga bus service digitally.", url: "https://maga-transit-flow.base44.app/master", gradient: "linear-gradient(120deg,#3f6212,#111111)" },
+  { badge: "UC", tag: "Digital Menu • Ella", title: "Cafe Umbrella — Digital Menu", desc: "Digital menu & website for Umbrella Art Cafe on Passara Road, Ella — guests browse the menu and order with ease.", url: "https://umbrellacafe.vercel.app/", gradient: "linear-gradient(120deg,#065f46,#059669)" },
+];
+
 // --- Business Stage tab: E-Proposals (Web-Based Proposal Module) ---
 export const BUSINESS_STAGE = {
   badge: "First time in Sri Lanka",
