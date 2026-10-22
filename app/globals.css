@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---- S.Nilan design system: Dark Ash Grey canvas, black type, emerald accents ---- */
+html {
+  scroll-padding-top: 96px;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(900px 520px at 10% -5%, rgba(255, 255, 255, 0.25), transparent 60%),
+    radial-gradient(820px 540px at 96% 0%, rgba(40, 40, 40, 0.14), transparent 60%),
+    radial-gradient(760px 620px at 50% 108%, rgba(16, 185, 129, 0.05), transparent 60%),
+    linear-gradient(180deg, #bcbebf 0%, #a9abad 45%, #8f9194 100%);
+  background-attachment: fixed;
+}
+
+/* Subtle enterprise grid texture over the ash canvas */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 30%, transparent 75%);
+}
+
+::selection {
+  background: #059669;
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #a9abad;
+}
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 999px;
+  border: 2px solid #a9abad;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #065f46;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+  .glass {
+    @apply border border-white/50 bg-white/70 shadow-card backdrop-blur-xl;
+  }
+  .premium-card {
+    @apply rounded-3xl border border-white/60 bg-white/90 shadow-card backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-lift;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-extrabold transition duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300;
+  }
+  .btn-red {
+    @apply btn bg-brand-red text-white shadow-red;
+  }
+  .btn-olive {
+    @apply btn bg-brand-olive text-white shadow-olive;
+  }
+  .btn-ghost {
+    @apply btn border border-neutral-300 bg-white text-ink shadow-card;
+  }
+  .eyebrow {
+    @apply text-xs font-black uppercase tracking-[0.22em] text-brand-deep;
+  }
+  .section-title {
+    @apply font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl;
+  }
+  .text-gradient {
+    @apply bg-brand-gradient bg-clip-text text-transparent;
+  }
+  .link-arrow {
+    @apply inline-flex items-center gap-1 font-extrabold text-brand-deep underline-offset-4 hover:underline;
+  }
+}
