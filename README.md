@@ -15,6 +15,7 @@ app/
   globals.css       — Tailwind + design-system utilities + font CSS variables
   layout.js         — root layout: metadata/SEO, JSON-LD, security-related head tags
   page.js           — home page: composes all sections
+  not-found.js      — branded 404 page (noindex)
   icon.svg          — favicon (SN mark)
   manifest.js       — web app manifest
   robots.js         — /robots.txt
@@ -33,6 +34,7 @@ public/images/      — hero photography
 npm install
 npm run dev                  # http://localhost:3000
 npm run build && npm start   # production build
+npm run lint                 # ESLint (eslint-config-next / core-web-vitals)
 npm run check:i18n           # verify every UI string exists in all 6 languages
 ```
 
@@ -92,3 +94,14 @@ Cards without a `driveId` automatically show a “Video uploading” placeholder
 - Hero photos in `public/images/` are placeholders. **Replace them with your
   own photos** — the current `hero-main.jpg` is only 500×281 px, so it looks
   soft when shown at 560 px wide. Use ≥1600 px wide images.
+
+## Motion & bundle size
+
+Framer Motion is loaded through `components/MotionProvider.jsx`
+(`<LazyMotion features={domAnimation} strict>`), and every animated element
+uses the lightweight `m.*` components instead of `motion.*`. That keeps only
+the features the site actually uses (animate/variants, exit, hover/tap/focus,
+`whileInView`) and trims ~29 kB off First Load JS (173 kB → 144 kB).
+
+`strict` means the build/runtime will complain if a `motion.*` component is
+ever introduced — use `m.*` inside client components.

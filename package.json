@@ -7,7 +7,7 @@
     "dev": "next dev -H 0.0.0.0 -p 3000",
     "build": "next build",
     "start": "next start -H 0.0.0.0 -p 3000",
-    "lint": "next lint",
+    "lint": "eslint . --ext .js,.jsx --max-warnings 0",
     "check:i18n": "node scripts/check-i18n.mjs"
   },
   "dependencies": {
@@ -21,6 +21,8 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^15.5.28",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.15"
   },
