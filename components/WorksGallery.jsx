@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   ArrowUpRight,
   Briefcase,
@@ -273,7 +273,7 @@ export default function WorksGallery() {
         </Reveal>
 
         {/* ---- Groups inside the active tab ---- */}
-        <motion.div
+        <m.div
           key={active}
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -314,7 +314,7 @@ export default function WorksGallery() {
               </div>
             );
           })}
-        </motion.div>
+        </m.div>
 
         <Reveal>
           <div className="glass mx-auto mt-2 max-w-3xl rounded-3xl px-6 py-6 text-center font-bold">

@@ -1,6 +1,7 @@
 import "@fontsource-variable/inter";
 import "@fontsource-variable/manrope";
 import { LanguageProvider } from "@/components/LanguageProvider";
+import MotionProvider from "@/components/MotionProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CONTACT, SOCIALS } from "@/lib/data";
@@ -134,11 +135,13 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="font-sans text-ink antialiased">
-        <LanguageProvider>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-        </LanguageProvider>
+        <MotionProvider>
+          <LanguageProvider>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+          </LanguageProvider>
+        </MotionProvider>
       </body>
     </html>
   );

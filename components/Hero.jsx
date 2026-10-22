@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowDownRight, BadgeCheck, BarChart3, Mail, MessageCircle, Rocket } from "lucide-react";
 import { useLanguage } from "./LanguageProvider";
 import { CONTACT, HERO_STATS, SOCIALS } from "@/lib/data";
@@ -23,37 +23,37 @@ export default function Hero() {
       <div className="container-x grid items-center gap-12 pb-16 pt-14 lg:grid-cols-[1.05fr_0.95fr] lg:pb-24 lg:pt-20">
         {/* ------- Copy ------- */}
         <div>
-          <motion.div variants={fadeUp} initial="hidden" animate="show" custom={0}
+          <m.div variants={fadeUp} initial="hidden" animate="show" custom={0}
             className="inline-flex items-center gap-2 rounded-full border border-emerald-300 bg-emerald-50 px-4 py-1.5 text-[13px] font-extrabold text-emerald-900 shadow-sm">
             <span className="relative flex h-2.5 w-2.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70" />
               <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
             </span>
             {t("badge")}
-          </motion.div>
+          </m.div>
 
-          <motion.h1 variants={fadeUp} initial="hidden" animate="show" custom={1}
+          <m.h1 variants={fadeUp} initial="hidden" animate="show" custom={1}
             className="mt-6 font-display text-6xl font-extrabold leading-[0.98] tracking-[-0.04em] sm:text-7xl xl:text-[92px]">
             S.<span className="text-gradient">Nilan</span>
-          </motion.h1>
+          </m.h1>
 
-          <motion.p variants={fadeUp} initial="hidden" animate="show" custom={2}
+          <m.p variants={fadeUp} initial="hidden" animate="show" custom={2}
             className="mt-4 text-sm font-bold uppercase tracking-[0.14em] text-neutral-700">
             {CONTACT.fullName} &nbsp;•&nbsp; Sri Lanka → Working Worldwide
-          </motion.p>
+          </m.p>
 
-          <motion.p variants={fadeUp} initial="hidden" animate="show" custom={3}
+          <m.p variants={fadeUp} initial="hidden" animate="show" custom={3}
             className="mt-3 font-display text-2xl font-extrabold tracking-tight sm:text-3xl">
             {t("hero_role_1")}{" "}
             <span className="text-gradient">{CONTACT.brand}</span>
-          </motion.p>
+          </m.p>
 
-          <motion.p variants={fadeUp} initial="hidden" animate="show" custom={4}
+          <m.p variants={fadeUp} initial="hidden" animate="show" custom={4}
             className="mt-5 max-w-xl text-lg leading-relaxed text-neutral-900">
             {t("hero_desc")}
-          </motion.p>
+          </m.p>
 
-          <motion.div variants={fadeUp} initial="hidden" animate="show" custom={5}
+          <m.div variants={fadeUp} initial="hidden" animate="show" custom={5}
             className="mt-8 flex flex-wrap gap-3">
             <a href={CONTACT.whatsappProject} target="_blank" rel="noopener noreferrer" className="btn-olive">
               <MessageCircle className="h-[18px] w-[18px]" aria-hidden="true" />
@@ -67,9 +67,9 @@ export default function Hero() {
               <Mail className="h-[18px] w-[18px]" aria-hidden="true" />
               {t("btn_email")}
             </a>
-          </motion.div>
+          </m.div>
 
-          <motion.div variants={fadeUp} initial="hidden" animate="show" custom={6}
+          <m.div variants={fadeUp} initial="hidden" animate="show" custom={6}
             className="mt-8 flex flex-wrap gap-2">
             {SOCIALS.map((s) => (
               <a
@@ -82,9 +82,9 @@ export default function Hero() {
                 {s.label}
               </a>
             ))}
-          </motion.div>
+          </m.div>
 
-          <motion.dl variants={fadeUp} initial="hidden" animate="show" custom={7}
+          <m.dl variants={fadeUp} initial="hidden" animate="show" custom={7}
             className="mt-10 grid max-w-xl grid-cols-2 gap-3 sm:grid-cols-4">
             {HERO_STATS.map((s) => (
               <div key={s.label} className="glass rounded-2xl px-4 py-3">
@@ -95,11 +95,11 @@ export default function Hero() {
                 </dd>
               </div>
             ))}
-          </motion.dl>
+          </m.dl>
         </div>
 
         {/* ------- Visual composition ------- */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, scale: 0.97, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
@@ -137,7 +137,7 @@ export default function Hero() {
           </div>
 
           {/* Floating accent images */}
-          <motion.div
+          <m.div
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             className="absolute -left-3 top-8 hidden w-36 overflow-hidden rounded-2xl border border-white/60 shadow-lift sm:block lg:-left-10 lg:w-44"
@@ -145,8 +145,8 @@ export default function Hero() {
             <div className="relative aspect-[4/3]">
               <Image src="/images/hero-meeting.jpg" alt="Client strategy meeting" fill sizes="176px" className="object-cover" />
             </div>
-          </motion.div>
-          <motion.div
+          </m.div>
+          <m.div
             animate={{ y: [0, 9, 0] }}
             transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
             className="absolute -right-2 top-1/3 hidden w-32 overflow-hidden rounded-2xl border border-white/60 shadow-lift sm:block lg:-right-8 lg:w-40"
@@ -154,7 +154,7 @@ export default function Hero() {
             <div className="relative aspect-[4/3]">
               <Image src="/images/hero-strategy.jpg" alt="Presenting a digital marketing plan to a client" fill sizes="160px" className="object-cover" />
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Floating proof badges */}
           <div className="glass absolute -top-3 right-5 flex items-center gap-2 rounded-full py-2 pl-2.5 pr-4 text-xs font-extrabold shadow-lift">
@@ -165,7 +165,7 @@ export default function Hero() {
             <Rocket className="h-4 w-4 text-brand-red" aria-hidden="true" />
             Next.js • Google Ads • Meta Ads • SEO
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

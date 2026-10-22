@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { useLanguage } from "./LanguageProvider";
 import LanguageDropdown from "./LanguageDropdown";
@@ -68,7 +68,7 @@ export default function Navbar() {
 
         <AnimatePresence>
           {open && (
-            <motion.div
+            <m.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -96,7 +96,7 @@ export default function Navbar() {
                   {t("hire_me")}
                 </a>
               </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>
