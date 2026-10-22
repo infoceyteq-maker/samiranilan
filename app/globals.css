@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 /* ---- S.Nilan design system: Dark Ash Grey canvas, black type, emerald accents ---- */
+/* Fonts are self-hosted via @fontsource-variable (imported in app/layout.js) —
+   no runtime or build-time request to Google Fonts. */
+:root {
+  --font-inter: "Inter Variable", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans",
+    "Noto Sans Arabic", "Noto Sans Devanagari", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-manrope: "Manrope Variable", "Manrope", "Inter Variable", system-ui, sans-serif;
+}
+
 html {
   scroll-padding-top: 96px;
 }

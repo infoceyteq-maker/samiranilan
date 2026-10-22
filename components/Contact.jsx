@@ -92,7 +92,12 @@ export default function Contact() {
               <h3 className="font-display text-xl font-extrabold">{t("form_title")}</h3>
               <p className="mt-1 text-sm font-medium text-neutral-700">{t("form_note")}</p>
               <div className="mt-5 grid gap-3">
+                <label htmlFor="contact-name" className="sr-only">
+                  {t("ph_name")}
+                </label>
                 <input
+                  id="contact-name"
+                  name="name"
                   required
                   placeholder={t("ph_name")}
                   value={form.name}
@@ -100,7 +105,12 @@ export default function Contact() {
                   className={input}
                   autoComplete="name"
                 />
+                <label htmlFor="contact-email" className="sr-only">
+                  {t("ph_email")}
+                </label>
                 <input
+                  id="contact-email"
+                  name="email"
                   required
                   type="email"
                   placeholder={t("ph_email")}
@@ -109,13 +119,23 @@ export default function Contact() {
                   className={input}
                   autoComplete="email"
                 />
+                <label htmlFor="contact-subject" className="sr-only">
+                  {t("ph_subject")}
+                </label>
                 <input
+                  id="contact-subject"
+                  name="subject"
                   placeholder={t("ph_subject")}
                   value={form.subject}
                   onChange={(e) => setForm({ ...form, subject: e.target.value })}
                   className={input}
                 />
+                <label htmlFor="contact-message" className="sr-only">
+                  {t("ph_msg")}
+                </label>
                 <textarea
+                  id="contact-message"
+                  name="message"
                   required
                   rows={5}
                   placeholder={t("ph_msg")}

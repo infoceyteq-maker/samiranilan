@@ -46,8 +46,9 @@ function VideoCard({ item, gradient, visitUrl }) {
         ) : playing ? (
           <iframe
             src={driveEmbed(item.driveId)}
-            title={item.title}
+            title={`Video: ${item.title}`}
             className="absolute inset-0 h-full w-full"
+            loading="lazy"
             allow="autoplay; encrypted-media; picture-in-picture"
             allowFullScreen
           />
@@ -64,6 +65,7 @@ function VideoCard({ item, gradient, visitUrl }) {
                 src={driveThumb(item.driveId, 1000)}
                 alt={item.title}
                 loading="lazy"
+                decoding="async"
                 onError={() => setThumbErr(true)}
                 className="h-full w-full object-cover opacity-90 transition duration-300 group-hover/play:opacity-100"
               />
@@ -106,6 +108,7 @@ function ImageCard({ item }) {
             src={driveThumb(item.driveId, 800)}
             alt={item.title}
             loading="lazy"
+            decoding="async"
             onError={() => setErr(true)}
             className="h-full w-full object-contain"
           />

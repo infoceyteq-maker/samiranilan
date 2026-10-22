@@ -1,81 +1,93 @@
 # S.Nilan — Personal Profile (Next.js)
 
-Migrated from the original single-file HTML profile into a modern
-**Next.js (App Router) + Tailwind CSS + Framer Motion** application.
-Same content, same professional design system (Dark Ash Grey background,
-black typography, emerald accents, Red + Olive highlight buttons,
-6-language dropdown: EN / FR / HI / AR / ZH / JA) — rebuilt as an
-enterprise-grade "Super UI": premium agency hero with real photography,
-glassmorphism cards, scroll-reveal animation and modular components.
+Personal brand site for **S.Nilan** (S M S N Udayanga) — Digital Strategist &
+Founder of **Ceyteq (Ceylon Technology)**, Sri Lanka.
+
+Next.js **App Router** + Tailwind CSS + Framer Motion, with a 6‑language UI
+(EN / FR / HI / AR / ZH / JA) and a 4‑tab work gallery driven by Google Drive.
+
+Live: **https://samiranilan.vercel.app** (Vercel, deployed from `main`)
 
 ## Folder structure
 
 ```
-s-nilan-nextjs/
-├── app/
-│   ├── globals.css        — Tailwind + design-system utilities (glass, buttons, gradient text)
-│   ├── layout.js          — Root layout: fonts (Inter + Manrope), SEO metadata, Navbar/Footer
-│   └── page.js            — Home: composes all sections
-├── components/
-│   ├── LanguageProvider.jsx  — i18n context (6 languages, localStorage, Arabic RTL)
-│   ├── LanguageDropdown.jsx  — Sticky language <select> (EN/FR/HI/AR/ZH/JA)
-│   ├── Navbar.jsx            — Glass sticky nav + mobile menu
-│   ├── Reveal.jsx            — Framer-Motion scroll-reveal wrapper
-│   ├── SectionHeading.jsx    — Kicker + title + subtitle block
-│   ├── Hero.jsx              — NEW enterprise hero: photo collage, floating cards, stats, CTAs
-│   ├── TrustBar.jsx          — Certification badges strip
-│   ├── About.jsx             — "One person. The full digital team."
-│   ├── Services.jsx          — 6 services (Lucide icons)
-│   ├── WorksGallery.jsx      — NEW: My Works — 4 tabs (Software & Web / Design / Business Stage / Marketing & Advertising), video cards with Visit buttons
-│   ├── CreativeLab.jsx       — Ceyteq + 3D/creative projects
-│   ├── Profiles.jsx          — 12 of my own profiles & platforms
-│   ├── ProcessSkills.jsx     — 5-step process + skill chips
-│   ├── Contact.jsx           — Contact card + mailto form (+ WhatsApp / phone)
-│   └── Footer.jsx
-├── lib/
-│   ├── data.js            — All content (services, creative projects, profiles, contact…)
-│   └── translations.js    — UI strings for 6 languages
-├── public/
-│   └── images/            — hero photography (hero-main / hero-meeting / hero-strategy)
-├── tailwind.config.js     — Ash/Emerald/Red/Olive palette, premium shadows, fonts
-├── next.config.mjs
-└── package.json
+app/
+  globals.css       — Tailwind + design-system utilities + font CSS variables
+  layout.js         — root layout: metadata/SEO, JSON-LD, security-related head tags
+  page.js           — home page: composes all sections
+  icon.svg          — favicon (SN mark)
+  manifest.js       — web app manifest
+  robots.js         — /robots.txt
+  sitemap.js        — /sitemap.xml
+components/         — all UI sections (Navbar, Hero, WorksGallery, Contact…)
+lib/
+  data.js           — all content (services, work media, profiles, contact…)
+  translations.js   — UI strings for the 6 languages
+  site.js           — SITE_URL (single place to change when a custom domain is connected)
+public/images/      — hero photography
 ```
 
 ## Run locally
 
 ```bash
 npm install
-npm run dev        # http://localhost:3000
-npm run build && npm start   # production
+npm run dev                  # http://localhost:3000
+npm run build && npm start   # production build
 ```
 
-## Deploy
+Fonts are self-hosted through `@fontsource-variable/*`, so `npm run build`
+does **not** need network access (no Google Fonts fetch during build).
 
-- **Vercel (recommended):** push this folder to GitHub → "Import" in Vercel → done.
-- **Netlify:** New site from Git, build command `npm run build`, publish `.next` (Next plugin auto-applies).
+## Deploy (Vercel)
 
-## Customer content removed (2026-10-22)
+The repository is already linked to the Vercel project `samiranilan`:
+every push to `main` creates a production deployment.
 
-At S.Nilan's request this personal profile no longer features any
-customers — the 9 client websites, the 16-brand client wall and the
-Facebook client-page cards were removed from both this Next.js site and
-the older HTML build. The removed artwork is preserved in
-`/_removed_customers_backup/2026-10-22/` in the workspace, so any of it
-can be restored in minutes if ever needed again.
+```bash
+git push origin main
+```
 
-## Notes
+## SEO / metadata
 
-- Hero photos are professional stock placeholders — replace
-  `public/images/hero-*.jpg` with your own office/team photos any time.
-- Your personal Facebook profile is intentionally **not** linked anywhere
-  (only business/brand pages, per your instruction).
+- `metadataBase` = `https://samiranilan.vercel.app` → absolute OG/Twitter image URLs.
+- Canonical URL, robots directives, OpenGraph + Twitter cards.
+- JSON‑LD `Person` + `WebSite` schema with `sameAs` links to all social profiles.
+- `/robots.txt` and `/sitemap.xml` are generated by the App Router.
+
+> When a custom domain (e.g. `samiranilan.lk`) is connected in Vercel, change
+> `SITE_URL` in **`lib/site.js`** — everything else follows automatically.
+
+## Security headers
+
+`next.config.mjs` sends, for every route:
+
+| Header | Value |
+| --- | --- |
+| `Content-Security-Policy` | self + Google Drive images/iframes; `frame-ancestors 'none'` in prod |
+| `X-Content-Type-Options` | `nosniff` |
+| `Referrer-Policy` | `strict-origin-when-cross-origin` |
+| `Permissions-Policy` | camera/mic/geo/payment/usb disabled |
+| `Strict-Transport-Security` | 2 years, production only |
+
+`X-Powered-By` is disabled (`poweredByHeader: false`).
 
 ## Adding work videos (the 4 tabs)
 
-Edit `WORK_MEDIA` in `lib/data.js`. For each video set:
-- `embed`: `https://www.youtube.com/embed/VIDEO_ID` or
-  `https://drive.google.com/file/d/FILE_ID/preview` (Drive files must be
-  shared as "Anyone with the link"), or `videoSrc` for a direct .mp4 link.
-- `visitUrl`: where the red **Visit** button beside the video should go.
-Cards without a link yet automatically show a "Video uploading" placeholder.
+Edit `WORK_MEDIA` in `lib/data.js`. For each item set:
+
+- `driveId` — the Google Drive file ID (file must be shared as
+  “Anyone with the link”). Previews use
+  `https://drive.google.com/file/d/<id>/preview`.
+- `tab` — `software-web`, `design`, `business-stage` or `marketing-advertising`.
+- `group` — sub-folder heading shown above the cards.
+- `kind` — `video` or `image`.
+
+Cards without a `driveId` automatically show a “Video uploading” placeholder.
+
+## Content notes
+
+- No customer/client brand content is featured — this is a personal profile.
+- Your personal Facebook profile is intentionally not linked anywhere.
+- Hero photos in `public/images/` are placeholders. **Replace them with your
+  own photos** — the current `hero-main.jpg` is only 500×281 px, so it looks
+  soft when shown at 560 px wide. Use ≥1600 px wide images.
