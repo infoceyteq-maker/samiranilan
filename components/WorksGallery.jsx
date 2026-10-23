@@ -81,14 +81,29 @@ function VideoCard({ item, gradient, visitUrl }) {
         )}
       </div>
       <div className="flex flex-1 items-start justify-between gap-3 p-5">
-        <h4 className="line-clamp-2 font-display text-[15px] font-extrabold leading-snug">{item.title}</h4>
+        <div className="min-w-0">
+          <h4 className="line-clamp-2 font-display text-[15px] font-extrabold leading-snug">{item.title}</h4>
+          {item.websiteUrl && (
+            <a
+              href={item.websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 inline-flex max-w-full items-center gap-1.5 text-xs font-bold text-brand-deep underline-offset-4 hover:underline"
+              aria-label={`Related website: ${item.websiteName}`}
+            >
+              <span className="truncate">{item.websiteName}</span>
+              <ArrowUpRight className="h-3 w-3 shrink-0" aria-hidden="true" />
+            </a>
+          )}
+        </div>
         <a
-          href={item.driveId ? driveView(item.driveId) : visitUrl}
+          href={item.websiteUrl || (item.driveId ? driveView(item.driveId) : visitUrl)}
           target="_blank"
           rel="noopener noreferrer"
           className="btn-red shrink-0 !px-4 !py-2 text-[13px]"
+          aria-label={item.websiteUrl ? `Visit ${item.websiteName} website` : `View video: ${item.title}`}
         >
-          Visit
+          {item.websiteUrl ? "Visit Website" : "View Video"}
           <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
         </a>
       </div>
@@ -231,7 +246,7 @@ export default function WorksGallery() {
         <SectionHeading
           kicker="My Works"
           title="Work Videos & Files"
-          sub="Everything I have built over the years — organised into four crafts. Pick a tab, press play on any video, and use the Visit button beside each work to open the full file."
+          sub="Browse my work by category. Play each video here, visit the related live website where available, or open the video file directly."
         />
 
         {/* ---- 4 Tabs ---- */}
